@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan our hangout</title>
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/icon.png" />
+    <script src="./data.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="introduction" id="introduction">
+        <h2 class="question">Hii, có muốn đi chơi với Duy hong 🥰?</h2>
+        <img alt="cute greeting image" src="/assets/images/cute1.gif" />
+        <div class="options">
+          <button class="btn btn--no">Không muốn😠</button>
+          <button class="btn" id="agree-btn">Cóa😘</button>
+        </div>
+      </section>
+      <section class="date-section" id="date-section" style="display: none" data-id="0">
+        <h2 class="question">Khi nào thì bạn rảnh 👉👈?</h2>
+        <div class="options">
+          <label for="date">Chọn ngày giờ nè:</label>
+          <input required id="date" type="datetime-local" />
+        </div>
+       <div class="options">
+         <button class="btn btn--next disabled">Next</button>
+       </div class="options">
+      </section>
+      <section class="result" style="display: none;">
+      </section>
+      <section id="bye" style="display: none;">
+        <h2>Cảm mơn bạn đã hẹn Duy đi chơi💖</h2>
+        <p>Duy đã nhận được lời mời rồi, gặp bạn sớm nhé !</p>
+        <img alt="bye image" src="/assets/images/bye.gif" />
+        <button class="btn btn--return">Ok</button>
+      </section>
+      <form id="email-form" action="" method="POST" style="display: none;">
+        <input type="email" name="email" placeholder="" value="">
+        <input type="text" name="_subject" value="Hangout app notification">
+        <input type="text" name="name" placeholder="">
+        <input type="hidden" name="_captcha" value="false" >
+        <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
+        <textarea name="message" placeholder=""></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </body>
+</html>

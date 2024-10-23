@@ -1,0 +1,366 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+}
+
+section {
+  padding: 16px 8px;
+  margin: 0 auto;
+  min-height: 100px;
+  border-radius: 10px;
+  width: clamp(400px, 600px, 90vw);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.introduction img,
+#bye img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity ease 0.2s;
+  user-select: none;
+}
+
+.question {
+  margin: 16px 0;
+  padding: 0;
+  user-select: none;
+  font-weight: 600;
+  font-size: 3rem;
+  text-align: center;
+  width: 100%;
+  color: var(--primary-color);
+}
+
+.options {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.options label,
+.options input {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.btn {
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: 160px;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-color);
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.btn--next,
+.btn--back,
+.btn--return,
+#agree-btn {
+  transition: all ease-in 0.2s;
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.disabled {
+  filter: brightness(0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.btn--next::before,
+.btn--return::before,
+#agree-btn::before {
+  content: "";
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+.btn--next:hover::before,
+.btn--return:hover::before,
+#agree-btn:hover::before {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+}
+
+.btn--next:hover,
+.btn--return:hover,
+#agree-btn:hover {
+  color: #fff;
+}
+
+.btn--no {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  cursor: default;
+}
+
+.btn--no:hover {
+  transition: transform 0.2s;
+  animation: shake linear 0.2s;
+}
+
+.btn--back:hover {
+  filter: brightness(0.5);
+}
+
+/* Date section */
+#date {
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 6px;
+  font-family: cursive, sans-serif;
+  color: #fff;
+  border: none;
+  outline: none;
+  user-select: none;
+}
+
+#date::-webkit-calendar-picker-indicator {
+  padding: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Option item css */
+ul.options {
+  padding: 0;
+}
+
+.option-item {
+  list-style-type: none;
+  display: block;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  width: 120px;
+  min-height: 160px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  transition: all ease-in 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  user-select: none;
+}
+
+.option-item.active {
+  border: 2px solid var(--primary-color);
+}
+
+.option-item.active span {
+  color: var(--primary-color);
+}
+
+.option-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.option-item:active {
+  transform: scale(0.9);
+}
+
+.option-item img {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.option-item span {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  font-weight: 600;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Result section css */
+.result p {
+  width: 100%;
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  text-align: left;
+  color: var(--text-color);
+}
+
+.result .user-form {
+  width: 100%;
+}
+
+.result .user-form h3 {
+  width: 100%;
+  margin: 0;
+  font-size: 1.8rem;
+  color: green;
+  user-select: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.result .user-form .form-group + .form-group {
+  width: 100%;
+  margin-top: 16px;
+  color: var(--text-color);
+}
+
+.result .user-form label {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.result .user-form input,
+.result .user-form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 1.6rem;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  font-family: cursive, sans-serif;
+  resize: none;
+}
+
+.result .user-form input:focus,
+.result .user-form textarea:focus {
+  border-color: var(--primary-color);
+}
+
+.result .user-form input::placeholder,
+.result .user-form textarea::placeholder {
+  color: #333;
+}
+
+/* Bye section css */
+#bye h2 {
+  font-size: 2rem;
+  margin: 0;
+  user-select: none;
+  font-weight: 500;
+}
+
+#bye p {
+  user-select: none;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+#bye img {
+  margin-top: 20px;
+}
+
+#bye .btn--return {
+  margin-top: 20px;
+  min-width: 260px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .question {
+    font-size: 2.6rem;
+  }
+
+  .options label,
+  .options input {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 1.4rem;
+    width: 200px;
+  }
+
+  .option-item {
+    width: 100px;
+    min-height: 140px;
+  }
+
+  .option-item span {
+    font-size: 1.2rem;
+  }
+
+  #bye h2 {
+    font-size: 1.8rem;
+  }
+
+  #bye p {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .question {
+    font-size: 2rem;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    width: 200px;
+  }
+
+  .option-item {
+    width: 90%;
+    min-height: 140px;
+  }
+
+  .option-item span {
+    font-size: 1.2rem;
+  }
+
+  #bye h2 {
+    font-size: 1;
+  }
+}
