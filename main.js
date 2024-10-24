@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mailSenderElement = $('#email-form input[type="email"]');
   const mailNameElement = $('#email-form input[name="name"]');
   const mailFormContent = $("#email-form textarea");
+  const mailFormRedirectElement = $('#email-form input[name="_next"]');
 
   // define functions
   const handleRandomlyChangePosition = (event) => {
@@ -142,8 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleBeforeUnload = (event) => {
-    event.preventDefault();
-    event.returnValue = "Your data will not be stored";
+    if (Object.keys(data).length && currentIndex <= questions.length + 1) {
+      event.preventDefault();
+      event.returnValue = "Your data will not be stored";
+    }
   };
 
   const handleSendEmail = async () => {
@@ -155,25 +158,24 @@ document.addEventListener("DOMContentLoaded", () => {
     mailNameElement.setAttribute("placeholder", username);
     mailNameElement.value = username;
     mailSenderElement.setAttribute("placeholder", EMAIL);
-    mailSenderElement.placeholder = EMAIL;
+    mailSenderElement.value = EMAIL;
+    mailFormRedirectElement.value = window.location.origin + "/index.html";
     const content = `
-      Bạn vừa nhận được lời mời đi chơi từ ${username}\n
-      Thời gian : ${data?.date}\n
-      Địa điểm đi chơi : ${data?.destinations
-        .map((item) => item.toLowerCase())
-        .join(", ")}\n
-      Món ăn yêu thích : ${data?.foods
-        .map((item) => item.toLowerCase())
-        .join(", ")}\n
-      Đồ uống yêu thích: ${data?.drinks
-        .map((item) => item.toLowerCase())
-        .join(", ")}\n
-      Với lời nhắn là : ${message.trim() || "No message"}
-    `;
+    Bạn vừa nhận được lời mời đi chơi từ ${username}\n
+    Thời gian : ${data?.date}\n
+    Địa điểm đi chơi : ${data?.destinations
+      .map((item) => item.toLowerCase())
+      .join(", ")}\n
+    Món ăn yêu thích : ${data?.foods
+      .map((item) => item.toLowerCase())
+      .join(", ")}\n
+    Đồ uống yêu thích: ${data?.drinks
+      .map((item) => item.toLowerCase())
+      .join(", ")}\n
+    Với lời nhắn là : ${message.trim() || "No message"} `;
     mailFormContent.value = content;
     mailFormContent.setAttribute("placeholder", content.trim());
 
-    console.log(content.trim());
     try {
       await mailFormElement.submit();
       resultSection.style.display = "none";
@@ -201,11 +203,15 @@ document.addEventListener("DOMContentLoaded", () => {
                       <h3>Thông tin của bạn</h3>
                       <div class="form-group">
                         <label for="username">Tên của bạn*: </label>
-                        <input required spellcheck=false type="text" id="username" placeholder="Nhập tên..." />
+                        <input required spellcheck=false type="text" id="username" placeholder="Nhập tên..." value="${
+                          username || ""
+                        }" >
                       </div>
                       <div class="form-group">
                         <label for="message">Muốn nhắn gì cho Duy hong (không bắt buộc): </label><br />
-                        <textarea id="message" rows="5" spellcheck=false placeholder="Nhập lời nhắn..."></textarea>
+                        <textarea id="message" rows="5" spellcheck=false placeholder="Nhập lời nhắn...">${
+                          message || ""
+                        }</textarea>
                       </div>
                     </div>
                     <div class="options">
@@ -220,27 +226,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const usernameInputElement = resultSection.querySelector("#username");
     const messageInputElement = resultSection.querySelector("#message");
 
-    // set events for new element
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
     resultSection.querySelector(".btn--back").onclick = () => {
+      currentIndex--;
       handleChangeSection();
     };
 
     resultSection.querySelector("#btn-send").onclick = () => {
       if (!username.trim()) {
-        window.alert("Vui lòng nhập tên của bạn!");
+        window.alert("Cho Duy biết tên của bạn (hoặc nickname) nè!");
         usernameInputElement.value = "";
         usernameInputElement.focus();
         return;
       }
-
+      currentIndex++;
       handleSendEmail();
     };
 
-    usernameInputElement.onchange = (event) => {
-      const newValue = event.target.value;
-      username = newValue.trim();
+    usernameInputElement.oninput = (event) => {
+      username = event.target.value.trim();
     };
 
     messageInputElement.onchange = (event) => {
@@ -253,6 +256,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderQuestionSections();
 
   //set events
+  window.addEventListener("beforeunload", handleBeforeUnload);
+
   rejectButtonElement.addEventListener(
     "mouseover",
     handleRandomlyChangePosition
@@ -289,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button.onclick = function (event) {
       if (currentIndex === questions.length) {
         //show result section and return
-        console.log(data);
+        currentIndex++;
         handleRenderResult();
         return;
       }
@@ -336,7 +341,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   returnButtonElement.onclick = () => {
-    window.removeEventListener("beforeunload", handleBeforeUnload);
     window.location.reload();
   };
 });

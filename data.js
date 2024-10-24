@@ -36,18 +36,23 @@ const questions = [
       },
       {
         id: 7,
-        name: "Đi chơi triển lãm",
+        name: "Đi triển lãm",
         image: "/assets/images/exhibition.jpg",
       },
       {
         id: 8,
-        name: "Đi cháy phố",
+        name: "Đi dạo phố",
         image: "/assets/images/street.jpg",
       },
       {
         id: 9,
         name: "Đi nhậu/đi chill",
         image: "/assets/images/chill.jpg",
+      },
+      {
+        id: 10,
+        name: "Đi xem ca nhạc",
+        image: "/assets/images/music.jpg",
       },
     ],
   },
@@ -68,7 +73,7 @@ const questions = [
       },
       {
         id: 3,
-        name: "Ăn bánh ngọt/kem",
+        name: "Ăn đồ ngọt",
         image: "/assets/images/cakes.jpg",
       },
       {
@@ -90,6 +95,11 @@ const questions = [
         id: 7,
         name: "Ăn vặt",
         image: "/assets/images/fish_ball.jpg",
+      },
+      {
+        id: 8,
+        name: "Ăn lẩu/đồ nướng/buffet",
+        image: "/assets/images/buffet.jpg",
       },
     ],
   },
@@ -120,6 +130,11 @@ const questions = [
       },
       {
         id: 5,
+        name: "Nước ngọt",
+        image: "/assets/images/soft_drink.jpg",
+      },
+      {
+        id: 6,
         name: "Saigon/Ken...😊",
         image: "/assets/images/beer.jpg",
       },

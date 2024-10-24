@@ -6,7 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+  background: url("/assets/images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 section {
@@ -45,6 +48,11 @@ section {
   text-align: center;
   width: 100%;
   color: var(--primary-color);
+  animation: floatAnimate 1.6s ease-in-out infinite;
+}
+
+.result .question {
+  animation: unset;
 }
 
 .options {
