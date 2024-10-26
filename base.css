@@ -23,6 +23,23 @@ body {
   font-family: cursive, sans-serif;
 }
 
+.row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+  row-gap: 16px;
+}
+
+.col {
+  padding: 0 8px;
+}
+
+.col-lg-4 {
+  flex: 0 33.3333%;
+  max-width: 33.3333%;
+}
+
 /* Animations */
 @keyframes shake {
   0% {
@@ -51,5 +68,90 @@ body {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 50%;
+    max-width: 50%;
+  }
+
+  body,
+  .result .user-form input,
+  .result .user-form textarea,
+  #date {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .question {
+    font-size: 3rem;
+  }
+
+  .options label,
+  .options input {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 1.4rem;
+    width: 200px;
+  }
+
+  .option-item {
+    width: 100px;
+    min-height: 140px;
+  }
+
+  .option-item span {
+    font-size: 2.6rem;
+  }
+
+  #bye h2 {
+    font-size: 1.8rem;
+  }
+
+  #bye p {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  /* section {
+    width: 90vw;
+  } */
+
+  .col-sm-12 {
+    flex: 0 100%;
+    max-width: 100%;
+  }
+
+  .question {
+    font-size: 2.8rem;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    width: 260px;
+  }
+
+  .option-item {
+    width: 90%;
+    min-height: 140px;
+  }
+
+  .option-item span {
+    font-size: 1.2rem;
+  }
+
+  #bye h2 {
+    font-size: 1;
   }
 }

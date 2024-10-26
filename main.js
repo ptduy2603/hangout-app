@@ -111,16 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const optionsHtml =
         question?.options.reduce((result, currentOption) => {
           return (result += `
-        <li id="${question?.type}-${currentOption?.id}" class="option-item">
-          <img alt="${question?.type} option ${currentOption?.id}" src="${currentOption?.image}" />
-          <span>${currentOption?.name}</span>
-        </li>
+        <div class="col col-lg-4 col-md-6 col-sm-12">
+          <li id="${question?.type}-${currentOption?.id}" class="option-item">
+            <img alt="${question?.type} option ${currentOption?.id}" src="${currentOption?.image}" />
+            <span>${currentOption?.name}</span>
+          </li>
+        </div>
       `);
         }, "") || "";
 
       questionSection.innerHTML = `
       <h2 class="question">${question?.title}</h2>
-      <ul class="options">
+      <ul class="options row">
         ${optionsHtml}
       </ul>
       <div class="options">
@@ -299,6 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       currentIndex++;
       handleChangeSection();
     };

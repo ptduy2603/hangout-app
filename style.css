@@ -39,8 +39,12 @@ section {
   user-select: none;
 }
 
+.introduction img {
+  margin-top: 16px;
+}
+
 .question {
-  margin: 16px 0;
+  margin: 0;
   padding: 0;
   user-select: none;
   font-weight: 600;
@@ -58,11 +62,14 @@ section {
 .options {
   width: 100%;
   margin-top: 40px;
+}
+
+.options:has(button),
+.options:has(input[type="datetime-local"]) {
   display: flex;
-  gap: 20px;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
 
 .options label,
@@ -176,19 +183,19 @@ ul.options {
 
 .option-item {
   list-style-type: none;
-  display: block;
+  width: 100%;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  width: 120px;
   min-height: 160px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  transition: all ease-in 0.2s;
+  transition: all ease-in 0.1s;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  overflow: hidden;
   user-select: none;
 }
 
@@ -218,12 +225,15 @@ ul.options {
 }
 
 .option-item span {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--text-color);
   font-weight: 600;
   flex: 1;
-  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
   text-align: center;
+  justify-content: center;
 }
 
 /* Result section css */
@@ -291,10 +301,12 @@ ul.options {
   margin: 0;
   user-select: none;
   font-weight: 500;
+  text-align: center;
 }
 
 #bye p {
   user-select: none;
+  text-align: center;
   font-size: 1.8rem;
   font-weight: 400;
   margin: 0;
@@ -307,68 +319,4 @@ ul.options {
 #bye .btn--return {
   margin-top: 20px;
   min-width: 260px;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .question {
-    font-size: 2.6rem;
-  }
-
-  .options label,
-  .options input {
-    font-size: 1.5rem;
-  }
-
-  .btn {
-    font-size: 1.4rem;
-    width: 200px;
-  }
-
-  .option-item {
-    width: 100px;
-    min-height: 140px;
-  }
-
-  .option-item span {
-    font-size: 1.2rem;
-  }
-
-  #bye h2 {
-    font-size: 1.8rem;
-  }
-
-  #bye p {
-    font-size: 1.6rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .question {
-    font-size: 2rem;
-  }
-
-  .options {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .btn {
-    font-size: 1.2rem;
-    width: 200px;
-  }
-
-  .option-item {
-    width: 90%;
-    min-height: 140px;
-  }
-
-  .option-item span {
-    font-size: 1.2rem;
-  }
-
-  #bye h2 {
-    font-size: 1;
-  }
 }
