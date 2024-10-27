@@ -82,7 +82,7 @@ body {
   .result .user-form input,
   .result .user-form textarea,
   #date {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
   }
 
   .question {
@@ -119,27 +119,26 @@ body {
 
 /* Mobile */
 @media (max-width: 480px) {
-  /* section {
+  section {
     width: 90vw;
-  } */
+  }
 
   .col-sm-12 {
     flex: 0 100%;
     max-width: 100%;
   }
 
-  .question {
-    font-size: 2.8rem;
+  .options:has(input[type="datetime-local"]) {
+    flex-direction: column;
   }
 
-  .options {
-    flex-direction: column;
-    gap: 20px;
+  .question {
+    font-size: 2.4rem;
   }
 
   .btn {
     font-size: 1.2rem;
-    width: 260px;
+    width: 280px;
   }
 
   .option-item {

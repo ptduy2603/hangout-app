@@ -61,7 +61,7 @@ section {
 
 .options {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 26px;
 }
 
 .options:has(button),
@@ -249,6 +249,7 @@ ul.options {
 
 .result .user-form {
   width: 100%;
+  margin-top: 20px;
 }
 
 .result .user-form h3 {
